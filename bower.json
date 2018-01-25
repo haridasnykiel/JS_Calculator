@@ -1,0 +1,20 @@
+{
+  "name": "JS_Calculator",
+  "homepage": "https://github.com/haridasnykiel/JS_Calculator",
+  "authors": [
+    "Haridas <haridasnykiel@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
