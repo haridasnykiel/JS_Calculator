@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    flex-direction: column; 
+    background-color: blanchedalmond;
+}
+
+#display {
+    width: 100%;
+    height: 8em;
+    flex-grow: 1;
+    margin-bottom: 1em;
+    background-color: lightblue;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#clear {
+    width: 100%;
+    height: 8em;
+    flex-grow: 1;
+    background-color: #ccffff;
+    display: flex;
+    padding: 5px;
+}
+
+#clear-button {
+    width: 100%;
+    height: 100%;
+    font-size: 5em;
+    background-color: #065353;
+    color: #35adad;
+}
+
+#clear-button:active {
+    background-color: #48b1b1;
+    color: #061313;
+}
+
+#divide_row {
+    width: 100%;
+    height: 8em;
+    flex-grow: 1;
+    background-color: #ccffff;
+    display: flex;
+}
+
+.buttons_divide {
+    flex-grow: 1;
+    background-color: #065353;
+    font-size: 5em; 
+}
+
+#multiple_row {
+    width: 100%;
+    height: 8em;
+    flex-grow: 1;
+    background-color: #ccffff;
+    display: flex;
+}
+
+.buttons_multiple {
+    flex-grow: 1;
+    background-color: #065353;
+    font-size: 5em; 
+}
+
+#subtract_row {
+    width: 100%;
+    height: 8em;
+    flex-grow: 1;
+    background-color: #ccffff;
+    display: flex;
+}
+
+.buttons_subtract {
+    flex-grow: 1;
+    background-color: #065353;
+    font-size: 5em; 
+}
+
+#addition_row {
+    width: 100%;
+    height: 8em;
+    flex-grow: 1;
+    background-color: #ccffff;
+    display: flex;
+}
+
+.buttons_addition {
+    flex-grow: 1;
+    background-color: #065353;
+    font-size: 5em; 
+}
