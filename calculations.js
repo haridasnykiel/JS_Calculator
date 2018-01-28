@@ -1,9 +1,16 @@
 $(function(event) {
   console.log('DOM is ready');
 
-  $('#seven').click(function() {
-    $('#display').append('7');
+  $('.buttons').on('click',function() {
+    output($( this ).val());
   });
 
+  function output(value) {
+    $('#display').append(value);
+  }
+
+  $('#clear-button').click(function(){
+    $('#display').empty();
+  });
 
 });
