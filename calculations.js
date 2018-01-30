@@ -2,7 +2,13 @@ $(function(event) {
   console.log('DOM is ready');
 
   $('.buttons').on('click',function() {
-    output($( this ).val());
+    var checkClass = $( this ).hasClass( "operator" );
+    if(checkClass) {
+      output("&nbsp;" + $( this ).val() + "&nbsp;");
+    } else {
+      output($( this ).val());
+    }
+    
   });
 
   function output(value) {
