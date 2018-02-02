@@ -2,6 +2,7 @@ $(function(event) {
   console.log('DOM is ready');
 
   var calculation = [];
+  var numbers = "";
   $('.buttons').on('click',function() {
     var checkClass = $( this ).hasClass( "operator" );
     if(checkClass) {
@@ -10,43 +11,48 @@ $(function(event) {
     } else {
       output($( this ).val());
     }
-   
-    if($( this ).val() === '×' || $( this ).val() === '÷' || $( this ).val() === '+' || $( this ).val() === '-') {
-      var allNums = calculation.join('');
-      calculation.push(allNums);
+
+    if($( this ).val() === '×' || $( this ).val() === '÷' || $( this ).val() === '+' || $( this ).val() === '-' || $( this ).val() === '=') {
+      if(numbers !== "") {
+        calculation.push(numbers);
+        numbers = "";
+      }
       calculation.push($( this ).val());
     } else {
-      calculation.push($( this ).val());
+      numbers += $( this ).val();
     }
 
     if($( this ).val() === '=') {
       $('#display').html(calculate());
+      calculation = [];
+      calculation.push($('#display').html());
     }
+
     console.log(calculation);
   });
 
   function calculate() {
     var result;
-    for (let index = 0; index < calculation.length; index++) {
+    for (var index = 0; index < calculation.length; index++) {
       var totals = 0;
-      switch (calculation[index]) {
+      switch (calculation[index]) { // the array does not change so it will do the calculation with the orginial numbers and not the new number from the previous calculation. 
         case '+':
-          result = calculation[index-1] + calculation[index+1]
+          result = parseFloat(calculation[index-1]) + parseFloat(calculation[index+1]);
           break;
         case '×':
-          result = calculation[index-1] * calculation[index+1]
+          result = parseFloat(calculation[index-1]) * parseFloat(calculation[index+1]);
           break;
         case '-':
-          result = calculation[index-1] - calculation[index+1]
-          break; 
+          result = parseFloat(calculation[index-1]) - parseFloat(calculation[index+1]);
+          break;
         case '÷':
-          result = calculation[index-1] / calculation[index+1]
-          break;  
+          result = parseFloat(calculation[index-1]) / parseFloat(calculation[index+1]);
+          break;
 
       }
-      
+
     }
-    return result
+    return result;
   }
 
   function output(value) {
