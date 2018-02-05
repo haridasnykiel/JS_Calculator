@@ -23,9 +23,15 @@ $(function(event) {
     }
 
     if($( this ).val() === '=') {
-      $('#display').html(calculate());
-      calculation = [];
-      calculation.push($('#display').html());
+      while(calculation.length > 1) {
+        $('#display').html(calculate());
+        calculation.splice(0,3);  
+        calculation.unshift($('#display').html());
+      }
+
+      
+      //calculation = [];
+      
     }
 
     console.log(calculation);
@@ -34,8 +40,7 @@ $(function(event) {
   function calculate() {
     var result;
     for (var index = 0; index < calculation.length; index++) {
-      var totals = 0;
-      switch (calculation[index]) { // the array does not change so it will do the calculation with the orginial numbers and not the new number from the previous calculation. 
+      switch (calculation[index]) { 
         case '+':
           result = parseFloat(calculation[index-1]) + parseFloat(calculation[index+1]);
           break;
@@ -48,9 +53,8 @@ $(function(event) {
         case '÷':
           result = parseFloat(calculation[index-1]) / parseFloat(calculation[index+1]);
           break;
-
       }
-
+      //break;
     }
     return result;
   }
