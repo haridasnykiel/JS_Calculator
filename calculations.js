@@ -3,11 +3,11 @@ $(function(event) {
 
   var calculation = [];
   var numbers = "";
+
   $('.buttons').on('click',function() {
     var checkClass = $( this ).hasClass( "operator" );
     if(checkClass) {
       output("&nbsp;" + $( this ).val() + "&nbsp;");
-
     } else {
       output($( this ).val());
     }
@@ -17,46 +17,49 @@ $(function(event) {
         calculation.push(numbers);
         numbers = "";
       }
-      calculation.push($( this ).val());
+      if($( this ).val() !== '=') {
+        calculation.push($( this ).val());
+      }
+
     } else {
       numbers += $( this ).val();
     }
 
     if($( this ).val() === '=') {
-      while(calculation.length > 1) {
-        $('#display').html(calculate());
-        calculation.splice(0,3);  
-        calculation.unshift($('#display').html());
-      }
-
-      
-      //calculation = [];
-      
+      $('#display').html(Calculate());
+      calculation = [];
+      calculation.push($('#display').html());
     }
 
     console.log(calculation);
   });
 
-  function calculate() {
-    var result;
+  function Calculate() {
+    var result = 0;
     for (var index = 0; index < calculation.length; index++) {
-      switch (calculation[index]) { 
+      switch (calculation[index]) {
         case '+':
-          result = parseFloat(calculation[index-1]) + parseFloat(calculation[index+1]);
+          result += (parseFloat(calculation[index-1]) + parseFloat(calculation[index+1]));
+          // console.log(result);
+          //
+          // calculation.splice(0,2,String(result));
+          // console.log(calculation);
           break;
         case '×':
-          result = parseFloat(calculation[index-1]) * parseFloat(calculation[index+1]);
+          result += (parseFloat(calculation[index-1]) * parseFloat(calculation[index+1]));
+          //calculation.splice(0,2,result);
           break;
         case '-':
-          result = parseFloat(calculation[index-1]) - parseFloat(calculation[index+1]);
+          result += (parseFloat(calculation[index-1]) - parseFloat(calculation[index+1]));
+          //calculation.splice(0,2,result);
           break;
         case '÷':
-          result = parseFloat(calculation[index-1]) / parseFloat(calculation[index+1]);
+          result += (parseFloat(calculation[index-1]) / parseFloat(calculation[index+1]));
+          //calculation.splice(0,2,result);
           break;
       }
-      //break;
     }
-    return result;
+    return String(result);
   }
 
   function output(value) {
@@ -67,7 +70,5 @@ $(function(event) {
     $('#display').empty();
     calculation = [];
   });
-
-
 
 });
