@@ -1,6 +1,5 @@
 $(function(event) {
-  console.log('DOM is ready');
-
+/*jslint evil: true */
   var calculation = [];
   var numbers = "";
 
@@ -9,6 +8,7 @@ $(function(event) {
     if(checkClass) {
       output("&nbsp;" + $( this ).val() + "&nbsp;");
     } else {
+      numbers += $( this ).val();
       output($( this ).val());
     }
 
@@ -17,50 +17,26 @@ $(function(event) {
         calculation.push(numbers);
         numbers = "";
       }
+
       if($( this ).val() !== '=') {
         calculation.push($( this ).val());
+      } else {
+        try {
+          $('#display').html(eval(calculation.join("")));
+        }
+        catch(SyntaxError) {
+          $('#display').html(0);
+        }
+
+        calculation = [];
+        numbers = ($('#display').html());
+
       }
-
-    } else {
-      numbers += $( this ).val();
     }
-
-    if($( this ).val() === '=') {
-      $('#display').html(Calculate());
-      calculation = [];
-      calculation.push($('#display').html());
-    }
-
+    
+    console.log(numbers);
     console.log(calculation);
   });
-
-  function Calculate() {
-    var result = 0;
-    for (var index = 0; index < calculation.length; index++) {
-      switch (calculation[index]) {
-        case '+':
-          result += (parseFloat(calculation[index-1]) + parseFloat(calculation[index+1]));
-          // console.log(result);
-          //
-          // calculation.splice(0,2,String(result));
-          // console.log(calculation);
-          break;
-        case '×':
-          result += (parseFloat(calculation[index-1]) * parseFloat(calculation[index+1]));
-          //calculation.splice(0,2,result);
-          break;
-        case '-':
-          result += (parseFloat(calculation[index-1]) - parseFloat(calculation[index+1]));
-          //calculation.splice(0,2,result);
-          break;
-        case '÷':
-          result += (parseFloat(calculation[index-1]) / parseFloat(calculation[index+1]));
-          //calculation.splice(0,2,result);
-          break;
-      }
-    }
-    return String(result);
-  }
 
   function output(value) {
     $('#display').append(value);
