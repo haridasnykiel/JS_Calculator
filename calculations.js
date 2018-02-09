@@ -19,7 +19,18 @@ $(function(event) {
       }
 
       if($( this ).val() !== '=') {
-        calculation.push($( this ).val());
+        switch ($( this ).val()) {
+          case '÷':
+            calculation.push('/');
+            break;
+          case '×':
+            calculation.push('*')
+            break;
+          default:
+            calculation.push($( this ).val()); // Try using math.js for the calculations.
+            break;
+        }
+        
       } else {
         try {
           $('#display').html(eval(calculation.join("")));
@@ -27,9 +38,11 @@ $(function(event) {
         catch(SyntaxError) {
           $('#display').html(0);
         }
-
         calculation = [];
-        numbers = ($('#display').html());
+        if($('#display').html() !== 0) {
+          numbers = ($('#display').html());
+        }
+        
 
       }
     }
