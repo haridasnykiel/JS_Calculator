@@ -40,30 +40,7 @@ $(function(event) {
       numbers += $( this ).val();
       output($( this ).val());
     }
- 
-    console.log(numbers);
-    console.log(calculation);
   });
-
-  // function calculate(arr, opIndex) {
-  //   switch (arr[opIndex]) {
-  //     case '÷':
-  //       arr[opIndex - 1] / arr[opIndex + 1];
-  //       break;
-  //     case '×':
-  //       arr[opIndex - 1] * arr[opIndex + 1];
-  //       break;
-  //     case '+':
-  //       arr[opIndex - 1] + arr[opIndex + 1];
-  //       break; 
-  //     case '-':
-  //       arr[opIndex - 1] - arr[opIndex + 1];
-  //       break;
-  //     default:
-  //       calculation.push($( this ).val()); // Try using math.js for the calculations.
-  //       break;
-  //   }
-  // }
 
   function output(value) {
     $('#display').append(value);

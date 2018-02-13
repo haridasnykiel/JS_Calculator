@@ -8,27 +8,28 @@ body {
     display: flex;
     flex-direction: column;
     background-color: blanchedalmond;
-    padding: 2em;
-    margin: 1em;
+    padding: 1em;
+    margin: 0.2em;
+}
+
+#top {
+    display: flex;
+    flex-direction: row;
+    background-color: #ccffff;
 }
 
 #display {
-    width: 100%;
     height: 1em;
-    flex-grow: 1;
-    margin-bottom: 1em;
+    flex-grow: 4;
     background-color: lightblue;
     border-radius: 5px;
     padding-top: 0.7em;
     padding-bottom: 2em;
-    font-size: 2em;
+    font-size: 3em;
     text-align: center;
 }
 
-
-
 #clear {
-    width: 100%;
     height: 8em;
     flex-grow: 1;
     background-color: #ccffff;
