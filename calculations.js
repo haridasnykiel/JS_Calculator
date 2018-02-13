@@ -16,19 +16,22 @@ $(function(event) {
             calculation.push('/');
             break;
           case '×':
-            calculation.push('*')
+            calculation.push('*');
             break;
           default:
             calculation.push($( this ).val()); // Try using math.js for the calculations.
             break;
         }
-        
+
       } else {
         try{
           $('#display').html(math.eval(calculation.join("")));
         }
         catch(SyntaxError) {
           $('#display').html("Please add a complete mathimatical operation.");
+          setTimeout(function(){
+            $('#display').empty();
+          }, 1000);
         }
 
         calculation = [];
@@ -50,7 +53,6 @@ $(function(event) {
     $('#display').empty();
     calculation = [];
     numbers = "";
-    console.log(calculation);
   });
 
 });
