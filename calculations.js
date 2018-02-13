@@ -28,12 +28,8 @@ $(function(event) {
           $('#display').html(math.eval(calculation.join("")));
         }
         catch(SyntaxError) {
-          $('#display').html("Please add a complete mathimatical operation.");
-          setTimeout(function(){
-            $('#display').empty();
-          }, 1000);
+          clearDisplay();
         }
-
         calculation = [];
         if($('#display').html() !== 0) {
           numbers = ($('#display').html());
@@ -50,9 +46,15 @@ $(function(event) {
   }
 
   $('#clear-button').click(function(){
+    clearDisplay();
+  });
+  
+  function clearDisplay() {
     $('#display').empty();
     calculation = [];
     numbers = "";
-  });
+  }
+
+
 
 });
