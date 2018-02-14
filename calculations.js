@@ -11,6 +11,7 @@ $(function(event) {
         numbers = "";
       }
       if($( this ).val() !== '=') {
+
         switch ($( this ).val()) {
           case '÷':
             calculation.push('/');
@@ -23,9 +24,10 @@ $(function(event) {
             break;
         }
 
+      console.log(calculation);
       } else {
         try{
-          $('#display').html(math.eval(calculation.join("")));
+          $('#display').html(math.eval(calculation.join("")).toFixed(5));
         }
         catch(SyntaxError) {
           clearDisplay();
@@ -36,10 +38,23 @@ $(function(event) {
         }
       }
     } else {
-      numbers += $( this ).val();
-      output($( this ).val());
+      if($( this ).val() === '.')  {
+        console.log("here")
+        var reg = /\d+\./g;
+        var test = reg.test(numbers);
+        if(!test) {
+          IncrementNumbersAndDisplay(this);
+        }
+      } else {
+        IncrementNumbersAndDisplay(this);
+      }
     }
   });
+
+  function IncrementNumbersAndDisplay(element) {
+    numbers += $( element ).val();
+    output($( element ).val());
+  }
 
   function output(value) {
     $('#display').append(value);
