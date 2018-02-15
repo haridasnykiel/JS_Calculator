@@ -27,7 +27,9 @@ $(function(event) {
       console.log(calculation);
       } else {
         try{
-          $('#display').html(math.eval(calculation.join("")).toFixed(5));
+          var calculate = parseFloat(math.eval(calculation.join("")));
+          calculate.toString();
+          $('#display').html(calculate);
         }
         catch(SyntaxError) {
           clearDisplay();
@@ -39,7 +41,6 @@ $(function(event) {
       }
     } else {
       if($( this ).val() === '.')  {
-        console.log("here")
         var reg = /\d+\./g;
         var test = reg.test(numbers);
         if(!test) {
@@ -63,7 +64,7 @@ $(function(event) {
   $('#clear-button').click(function(){
     clearDisplay();
   });
-  
+
   function clearDisplay() {
     $('#display').empty();
     calculation = [];
